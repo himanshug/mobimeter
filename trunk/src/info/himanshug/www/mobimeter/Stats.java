@@ -19,7 +19,7 @@ public class Stats {
         this.reportForm = reportForm;
     }
 
-    public void addSample(long time, long size, boolean isError) {
+    public void addSample(long time, long size, boolean isError, String response) {
         totalTime += time;
         totalSize += size;
         count++;
@@ -27,7 +27,7 @@ public class Stats {
         if(time < min) min = time;
         if(time > max) max = time;
 
-        updateMidlet();
+        updateMidlet(response != null ? response : "");
     }
 
     public long getMin() {
@@ -50,12 +50,13 @@ public class Stats {
         return totalSize/count;
     }
 
-    private void updateMidlet() {
+    private void updateMidlet(String response) {
         reportForm.getCountStringItem().setText(Integer.toString(count));
         reportForm.getAverageTimeStringItem().setText(Long.toString(getAverageTime()));
         reportForm.getMinStringItem().setText(Long.toString(min));
         reportForm.getMaxStringItem().setText(Long.toString(max));
         reportForm.getAverageSizeStringItem().setText(Long.toString(getAverageSize()));
         reportForm.getErrorsStringItem().setText(Integer.toString(errors));
+        reportForm.getResponseStringItem().setText(response);
     }
 }
