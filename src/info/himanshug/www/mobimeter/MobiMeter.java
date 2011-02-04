@@ -95,7 +95,7 @@ public class MobiMeter extends MIDlet implements CommandListener {
                     LoadTester ltester = new LoadTester(Integer.parseInt(getInputForm().getWarmUpReqTextField().getString()),
                             Integer.parseInt(getInputForm().getTestReqCountTextField().getString()),
                             Long.parseLong(getInputForm().getThinkTimeTextField().getString()),
-                            getInputForm().getUrlTextField().getString().trim(),getReportForm());
+                            getInputForm().getUrlTextField().getString().trim(),getReportForm(),false);
                     switchDisplayable(null, getReportForm().getForm());
                     // write post-action user code here
                     new Thread(ltester).start();

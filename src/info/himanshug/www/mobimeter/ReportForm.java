@@ -21,6 +21,7 @@ public class ReportForm {
     private StringItem maxStringItem;
     private StringItem errorsStringItem;
     private StringItem statusStringItem;
+    private StringItem responseStringItem;
 
     private Command exitCommand;
     private Command aboutCommand;
@@ -82,6 +83,13 @@ public class ReportForm {
             statusStringItem = new StringItem("Status:", "In-Progress");
         }
         return statusStringItem;
+    }
+
+    public StringItem getResponseStringItem() {
+        if (responseStringItem == null) {
+            responseStringItem = new StringItem("Last Response:", "");
+        }
+        return responseStringItem;
     }
 
     public Command getExitCommand() {
