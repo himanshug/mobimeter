@@ -1,5 +1,6 @@
 package info.himanshug.www.mobimeter;
 
+import javax.microedition.lcdui.ChoiceGroup;
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Form;
@@ -18,6 +19,8 @@ public class InputForm {
     private TextField thinkTimeTextField;
     private TextField urlTextField;
 
+    private ChoiceGroup shouldPrintResponseChoiceGroup;
+
     private Command exitCommand;
     private Command okCommand;
 
@@ -27,7 +30,8 @@ public class InputForm {
         previousInputs = InputDataRecord.getPreviousRecord();
         
         form = new Form("Mobi-Meter", new Item[] { getWarmUpReqTextField(),
-            getTestReqCountTextField(), getThinkTimeTextField(), getUrlTextField() });
+            getTestReqCountTextField(), getThinkTimeTextField(), getUrlTextField(),
+            getShouldPrintResponseChoiceGroup() });
         form.addCommand(getExitCommand());
         form.addCommand(getOkCommand());
         form.setCommandListener(listener);
@@ -59,6 +63,14 @@ public class InputForm {
             urlTextField = new TextField("URL(non-empty)", previousInputs.getUrl(), 500, TextField.URL);
         }
         return urlTextField;
+    }
+
+    public ChoiceGroup getShouldPrintResponseChoiceGroup() {
+        if (shouldPrintResponseChoiceGroup == null) {
+            shouldPrintResponseChoiceGroup = new ChoiceGroup("",ChoiceGroup.MULTIPLE);
+            shouldPrintResponseChoiceGroup.append("show-response(first few chars)", null);
+        }
+        return shouldPrintResponseChoiceGroup;
     }
 
     public Command getOkCommand() {
